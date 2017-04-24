@@ -36,4 +36,12 @@ users = [
   }
 ]
 
-users.map { |user| UserAccountValidator.new(user) }
+user_objects = users.map { |user| UserAccountValidator.new(user) }
+
+user_objects.each do |user|
+  begin
+    user.validate
+  rescue StandardError => e
+    puts e.message
+  end
+end
